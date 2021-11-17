@@ -9,7 +9,7 @@ def min_value(vertices, dist):
             u[1] = v
             u[2] = i
     return u
-    
+
 def dijkstra(grafo, vertice):
     dist = np.full(shape=len(grafo), fill_value=math.inf)
     pred = np.full(shape=len(grafo), fill_value=-1)

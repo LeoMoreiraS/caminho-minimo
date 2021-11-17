@@ -39,9 +39,13 @@ else:
     inicio = time.time()
     resultado = floyd_warshall.floyd_warshall(grafo)
     final = time.time()
-
 # Chamada do algoritmo de acordo com as escolhas e atribuição de resultados nas variáveis
 
 print("\nProcessando...\n")
-shared.print_result(resultado, origem, destino)
+
+if algoritmoSelecionado == 3:
+    shared.print_result_floyd(resultado, origem, destino)
+else:
+    shared.print_result(resultado, origem, destino)
+
 print("Tempo: %fs\n" % (final - inicio))
