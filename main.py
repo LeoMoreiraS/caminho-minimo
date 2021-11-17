@@ -1,31 +1,47 @@
 # Bibliotecas e funções
 import sys
+import time
+from dijkstra import dijkstra
+from bellman_ford import bellman_ford
+import floyd_warshall
+from get_data import get_data 
+import shared
 # Bibliotecas e funções
 
 # Leitura dos dados
-archiveName = input("\nInforme o arquivo: ")
-if (archiveName != 'facebook_combined.txt' and archiveName != 'rg300_4730.txt' and archiveName != 'rome99c.txt' and archiveName != 'toy.txt' and archiveName != 'USA-road-dt.DC.txt'):
+nomeDoArquivo = input("\nInforme o arquivo: ")
+if (nomeDoArquivo != 'facebook_combined.txt' and nomeDoArquivo != 'rg300_4730.txt' and nomeDoArquivo != 'rome99c.txt' and nomeDoArquivo != 'toy.txt' and nomeDoArquivo != 'USA-road-dt.DC.txt'):
     print("\nArquivo não encontrado. Finalizando a aplicação...\n")
     sys.exit()
 
-algorithmSelected = int(input("\nAlgoritmo: \n  1 Dijkstra\n  2 Bellman-Ford\n  3 Floyd-Warshall\n"))
-if (algorithmSelected != 1 and algorithmSelected != 2 and algorithmSelected != 3):
+algoritmoSelecionado = int(input("\nAlgoritmo: \n  1 Dijkstra\n  2 Bellman-Ford\n  3 Floyd-Warshall\n"))
+if (algoritmoSelecionado != 1 and algoritmoSelecionado != 2 and algoritmoSelecionado != 3):
     print("\nAlgoritmo não encontrado. Finalizando a aplicação...\n")
     sys.exit()
 
-origin = int(input("\nOrigem: "))
-destiny = int(input("Destino: "))
+origem = int(input("\nOrigem: "))
+destino = int(input("Destino: "))
 # Leitura dos dados
 
 # Chamada do algoritmo de acordo com as escolhas e atribuição de resultados nas variáveis
+grafo = get_data(nomeDoArquivo)
 
-arrayResult = [0, 1, 2, 3]
-cost = 5
-time = 0.003
+if algoritmoSelecionado == 1:
+    inicio = time.time()
+    resultado = dijkstra(grafo, origem)
+    final = time.time()
+elif algoritmoSelecionado == 2:
+    inicio = time.time()
+    resultado = bellman_ford(grafo, origem)
+    final = time.time()
+else:
+    grafo = floyd_warshall.list_to_matrix(grafo)
+    inicio = time.time()
+    resultado = floyd_warshall.floyd_warshall(grafo)
+    final = time.time()
 
 # Chamada do algoritmo de acordo com as escolhas e atribuição de resultados nas variáveis
 
 print("\nProcessando...\n")
-print("Caminho:", arrayResult)
-print("Custo:", cost)
-print("Tempo: %fs\n" % (time))
+shared.print_result(resultado, origem, destino)
+print("Tempo: %fs\n" % (final - inicio))

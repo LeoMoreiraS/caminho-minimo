@@ -1,11 +1,7 @@
 import math
-import sys
 import numpy as np
 
-import shared as s
-
-
-def homemsino_ford(grafo, vertice):
+def bellman_ford(grafo, vertice):
     v = len(grafo)
     dist = np.full(shape=v, fill_value=math.inf)
     pred = np.full(shape=v, fill_value=-1)
@@ -21,14 +17,3 @@ def homemsino_ford(grafo, vertice):
         if not t:
             break
     return pred, dist
-
-
-# s.print_result(homemsino_ford([
-#     [(2, -2)],
-#     [(0, 4), (2, 3)],
-#     [(1, 5), (0, 2)]
-# ], 2))
-# s.print_result(homemsino_ford(s.g, 0))
-# s.print_result(homemsino_ford(s.f, 0))
-# s.print_result(homemsino_ford(s.f, 2))
-# s.print_result(homemsino_ford(s.h, 0))
