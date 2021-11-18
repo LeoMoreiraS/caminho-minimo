@@ -1,1 +1,1 @@
-# caminho-minimo
+Para executar o algoritmo, compile e execute somente o código da main.py, ele é o programa principal que importa todas as funções e bibliotecas necessárias para que todo o código funcione de forma plena. :)
